@@ -1,21 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 public class ClassRoutine extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClassRoutine
-     */
+    
     public ClassRoutine() {
         initComponents();
         setLocationRelativeTo(null);
+        display();
+    }
+    
+    public void display(){
+        int cnt;
+        
+        try {
+            statement=connect.prepareStatement("select *from classroutine");
+            result=statement.executeQuery();
+            ResultSetMetaData resMeta = result.getMetaData();
+            
+            cnt = resMeta.getColumnCount();
+            DefaultTableModel dt= (DefaultTableModel)routineTable.getModel();
+            dt.setRowCount(0);
+            while(result.next()){
+                
+                Vector store= new Vector();
+                
+                for(int i=1; i<=cnt; i++){
+                    
+                    store.add(result.getString("time"));
+                    store.add(result.getString("saturday"));
+                    store.add(result.getString("sunday"));
+                    store.add(result.getString("monday"));
+                    store.add(result.getString("tuesday"));
+                    store.add(result.getString("wednesday"));
+                    store.add(result.getString("thursday"));
+                    
+                }
+                dt.addRow(store);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ClassRoutine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,13 +62,13 @@ public class ClassRoutine extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        routineTable = new javax.swing.JTable();
+        titleLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        routineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -45,17 +79,17 @@ public class ClassRoutine extends javax.swing.JFrame {
                 "Time", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(routineTable);
 
-        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(175, 5, 73));
-        jLabel3.setText("Class routine");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(175, 5, 73));
+        titleLabel.setText("Class routine");
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("Back");
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,9 +99,9 @@ public class ClassRoutine extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jButton2)
+                        .addComponent(backButton)
                         .addGap(148, 148, 148)
-                        .addComponent(jLabel3))
+                        .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -79,10 +113,10 @@ public class ClassRoutine extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jButton2)))
+                        .addComponent(backButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
@@ -125,11 +159,18 @@ public class ClassRoutine extends javax.swing.JFrame {
             }
         });
     }
+    
+    ///custom variables.
+    private SQL objRoutine = new SQL();
+    
+    Connection connect = objRoutine.connection();
+    PreparedStatement statement;
+    ResultSet result;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton backButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable routineTable;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
