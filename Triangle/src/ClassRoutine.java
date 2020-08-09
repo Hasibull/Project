@@ -36,7 +36,6 @@ public class ClassRoutine extends javax.swing.JFrame {
                 for(int i=1; i<=cnt; i++){
                     
                     store.add(result.getString("time"));
-                    store.add(result.getString("saturday"));
                     store.add(result.getString("sunday"));
                     store.add(result.getString("monday"));
                     store.add(result.getString("tuesday"));
@@ -70,13 +69,13 @@ public class ClassRoutine extends javax.swing.JFrame {
 
         routineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Time", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
+                "Time", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
             }
         ));
         jScrollPane1.setViewportView(routineTable);
@@ -100,12 +99,12 @@ public class ClassRoutine extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(backButton)
-                        .addGap(148, 148, 148)
+                        .addGap(181, 181, 181)
                         .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(64, 64, 64)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,9 +116,9 @@ public class ClassRoutine extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(backButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();

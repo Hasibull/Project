@@ -30,84 +30,84 @@ public class TeacherDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        studentInfoButton = new javax.swing.JButton();
+        libraryButton = new javax.swing.JButton();
+        bookShopButton = new javax.swing.JButton();
+        cantinButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        salaryButton = new javax.swing.JButton();
+        holidayChartButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 0, 0));
-        jButton4.setText("Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 0, 0));
-        jButton1.setText("Student Info");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        studentInfoButton.setBackground(new java.awt.Color(153, 255, 153));
+        studentInfoButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        studentInfoButton.setForeground(new java.awt.Color(204, 0, 0));
+        studentInfoButton.setText("Student Info");
+        studentInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                studentInfoButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 255, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("Library");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        libraryButton.setBackground(new java.awt.Color(153, 255, 153));
+        libraryButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        libraryButton.setForeground(new java.awt.Color(204, 0, 0));
+        libraryButton.setText("Library");
+        libraryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                libraryButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(153, 255, 153));
-        jButton3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 0, 0));
-        jButton3.setText("Book Shop");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bookShopButton.setBackground(new java.awt.Color(153, 255, 153));
+        bookShopButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        bookShopButton.setForeground(new java.awt.Color(204, 0, 0));
+        bookShopButton.setText("Book Shop");
+        bookShopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bookShopButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(153, 255, 153));
-        jButton5.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 0, 0));
-        jButton5.setText("Cantin");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        cantinButton.setBackground(new java.awt.Color(153, 255, 153));
+        cantinButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        cantinButton.setForeground(new java.awt.Color(204, 0, 0));
+        cantinButton.setText("Cantin");
+        cantinButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                cantinButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel1.setFont(new java.awt.Font("Vivaldi", 1, 28)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel1.setText("Be the better version of youself!");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Vivaldi", 1, 28)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 51, 255));
+        titleLabel.setText("Be the better version of youself!");
 
-        jButton6.setBackground(new java.awt.Color(153, 255, 153));
-        jButton6.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 0, 0));
-        jButton6.setText("Salary");
+        salaryButton.setBackground(new java.awt.Color(153, 255, 153));
+        salaryButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        salaryButton.setForeground(new java.awt.Color(204, 0, 0));
+        salaryButton.setText("Salary");
 
-        jButton7.setBackground(new java.awt.Color(153, 255, 153));
-        jButton7.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 0, 0));
-        jButton7.setText("Holiday's chart");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        holidayChartButton.setBackground(new java.awt.Color(153, 255, 153));
+        holidayChartButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        holidayChartButton.setForeground(new java.awt.Color(204, 0, 0));
+        holidayChartButton.setText("Holiday's chart");
+        holidayChartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                holidayChartButtonActionPerformed(evt);
             }
         });
 
@@ -119,88 +119,96 @@ public class TeacherDashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jButton4))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
-                        .addComponent(jButton1))
+                        .addComponent(studentInfoButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(holidayChartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(libraryButton)
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cantinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(257, 257, 257)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(salaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jButton4)
+                .addComponent(backButton)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(libraryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(holidayChartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void libraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryButtonActionPerformed
         dispose();
         Library tch = new Library();
         
         tch.setWhoCall("Teacher");
         tch.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_libraryButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void cantinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantinButtonActionPerformed
         dispose();
-        new Cantin().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+        Cantin obj = new Cantin();
+        obj.setDecision("Teacher");
+        obj.setVisible(true);
+    }//GEN-LAST:event_cantinButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void holidayChartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holidayChartButtonActionPerformed
         dispose();
-        new HolidayChart().setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+        
+        HolidayChart obj = new HolidayChart();
+        
+        obj.setDecision("Teacher");
+        obj.setVisible(true);
+    }//GEN-LAST:event_holidayChartButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bookShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookShopButtonActionPerformed
         dispose();
-        new BookShop().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        BookShop obj = new BookShop();
+        obj.setDecision("Teacher");
+        obj.setVisible(true);
+    }//GEN-LAST:event_bookShopButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void studentInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentInfoButtonActionPerformed
         dispose();
         new StudentInfo().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_studentInfoButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         String value = JOptionPane.showInputDialog("Do you want to Log out?\nPress y to yes\nPress n to no");
-        if(value.equals("y")){
+        if(value.equals("y") || value.equals("Y")){
             dispose();
             new HomePage().setVisible(true);
         }
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,13 +246,13 @@ public class TeacherDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton bookShopButton;
+    private javax.swing.JButton cantinButton;
+    private javax.swing.JButton holidayChartButton;
+    private javax.swing.JButton libraryButton;
+    private javax.swing.JButton salaryButton;
+    private javax.swing.JButton studentInfoButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
+import javax.swing.JOptionPane;
+
+
+
 public class GuardianDashboard extends javax.swing.JFrame {
 
     /**
@@ -27,54 +22,70 @@ public class GuardianDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        teacherInfoButton = new javax.swing.JButton();
+        paymentButton = new javax.swing.JButton();
+        resultButton = new javax.swing.JButton();
+        feedBackButton = new javax.swing.JButton();
+        quoteLabel = new javax.swing.JLabel();
+        bookShopButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 0, 0));
-        jButton4.setText("Back");
-
-        jButton9.setBackground(new java.awt.Color(153, 255, 153));
-        jButton9.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(204, 0, 0));
-        jButton9.setText("Teacher Info");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(153, 255, 153));
-        jButton10.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(204, 0, 0));
-        jButton10.setText("Payment");
-
-        jButton11.setBackground(new java.awt.Color(153, 255, 153));
-        jButton11.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(204, 0, 0));
-        jButton11.setText("Result");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        teacherInfoButton.setBackground(new java.awt.Color(153, 255, 153));
+        teacherInfoButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        teacherInfoButton.setForeground(new java.awt.Color(204, 0, 0));
+        teacherInfoButton.setText("Teacher Info");
+        teacherInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                teacherInfoButtonActionPerformed(evt);
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(153, 255, 153));
-        jButton12.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 0, 0));
-        jButton12.setText("Feedback");
+        paymentButton.setBackground(new java.awt.Color(153, 255, 153));
+        paymentButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        paymentButton.setForeground(new java.awt.Color(204, 0, 0));
+        paymentButton.setText("Payment");
 
-        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel2.setFont(new java.awt.Font("Vivaldi", 3, 27)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("There is no such thing as a perfect Guardian");
+        resultButton.setBackground(new java.awt.Color(153, 255, 153));
+        resultButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        resultButton.setForeground(new java.awt.Color(204, 0, 0));
+        resultButton.setText("Result");
+        resultButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultButtonActionPerformed(evt);
+            }
+        });
+
+        feedBackButton.setBackground(new java.awt.Color(153, 255, 153));
+        feedBackButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        feedBackButton.setForeground(new java.awt.Color(204, 0, 0));
+        feedBackButton.setText("Feedback");
+
+        quoteLabel.setBackground(new java.awt.Color(255, 204, 204));
+        quoteLabel.setFont(new java.awt.Font("Vivaldi", 3, 27)); // NOI18N
+        quoteLabel.setForeground(new java.awt.Color(0, 0, 204));
+        quoteLabel.setText("There is no such thing as a perfect Guardian");
+
+        bookShopButton.setBackground(new java.awt.Color(153, 255, 153));
+        bookShopButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        bookShopButton.setForeground(new java.awt.Color(204, 0, 0));
+        bookShopButton.setText("Book Shop");
+        bookShopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookShopButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,49 +95,65 @@ public class GuardianDashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton4))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton9)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(teacherInfoButton)
+                            .addComponent(paymentButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(feedBackButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(resultButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bookShopButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(242, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jButton4)
+                .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(teacherInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addComponent(paymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(feedBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(resultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void teacherInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherInfoButtonActionPerformed
         dispose();
         new TeacherInfo().setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_teacherInfoButtonActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void resultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_resultButtonActionPerformed
+
+    private void bookShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookShopButtonActionPerformed
+        dispose();
+        new BookShop().setVisible(true);
+    }//GEN-LAST:event_bookShopButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        String value = JOptionPane.showInputDialog(this, "Are you want to Logout?\nEnter Y for yes");
+        if(value.equals("Y") || value.equals("y")){
+            dispose();
+            new HomePage().setVisible(true);
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,11 +191,12 @@ public class GuardianDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton bookShopButton;
+    private javax.swing.JButton feedBackButton;
+    private javax.swing.JButton paymentButton;
+    private javax.swing.JLabel quoteLabel;
+    private javax.swing.JButton resultButton;
+    private javax.swing.JButton teacherInfoButton;
     // End of variables declaration//GEN-END:variables
 }

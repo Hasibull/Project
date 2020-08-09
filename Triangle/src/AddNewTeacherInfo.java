@@ -36,6 +36,8 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
         subjectTextField = new javax.swing.JTextField();
         loginCodeTextField = new javax.swing.JTextField();
         insertButton = new javax.swing.JButton();
+        emailIdLabel = new javax.swing.JLabel();
+        emailIdTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,11 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
         backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         backButton.setForeground(new java.awt.Color(204, 0, 0));
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         fullNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         fullNameLabel.setText("Full Name:");
@@ -80,6 +87,15 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
             }
         });
 
+        emailIdLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailIdLabel.setText("Email ID:");
+
+        emailIdTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailIdTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,24 +109,21 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
                         .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(fullNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(subjectLabel)
-                                    .addComponent(loginCodeLabel)
-                                    .addComponent(mobileNoLabel)
-                                    .addComponent(passwordLabel))
-                                .addGap(38, 38, 38)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(subjectLabel)
+                            .addComponent(loginCodeLabel)
+                            .addComponent(mobileNoLabel)
+                            .addComponent(passwordLabel)
+                            .addComponent(emailIdLabel)
+                            .addComponent(fullNameLabel))
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mobileNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(subjectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(316, 316, 316)
                         .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -123,15 +136,19 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backButton)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fullNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subjectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(subjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,7 +162,7 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,6 +175,7 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
 
         String fullName = fullNameTextField.getText();
+        String emailId = emailIdTextField.getText();
         String subject = subjectTextField.getText();
         String loginCode = loginCodeTextField.getText();
         String mobileNo = mobileNoTextField.getText();
@@ -166,15 +184,16 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            statement = connect.prepareStatement("insert into teacherinformation(fullname, subject, logincode, mobileno, password) values(?,?,?,?,?)");
+            statement = connect.prepareStatement("insert into teacherinformation(fullname, subject, email, logincode, mobileno, password) values(?,?,?,?,?,?)");
             
             statement.setString(1, fullName);
             statement.setString(2, subject);
-            statement.setString(3, loginCode);
-            statement.setString(4, mobileNo);
-            statement.setString(5, password);
+            statement.setString(3, emailId);
+            statement.setString(4, loginCode);
+            statement.setString(5, mobileNo);
+            statement.setString(6, password);
             
-            if(fullName.equals("") || subject.equals("") || loginCode.equals("") || mobileNo.equals("") || password.equals("")){
+            if(fullName.equals("") || subject.equals("") || emailId.equals("") || loginCode.equals("") || mobileNo.equals("") || password.equals("")){
                 JOptionPane.showMessageDialog(this, "Insert all Information?");
             }
             else {
@@ -187,6 +206,7 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Item Recorded!");
 
                     fullNameTextField.setText("");
+                    emailIdTextField.setText("");
                     subjectTextField.setText("");
                     loginCodeTextField.setText("");
                     mobileNoTextField.setText("");
@@ -201,6 +221,15 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_insertButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dispose();
+        new AdminDashboard().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void emailIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailIdTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailIdTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +275,8 @@ public class AddNewTeacherInfo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel emailIdLabel;
+    private javax.swing.JTextField emailIdTextField;
     private javax.swing.JLabel fullNameLabel;
     private javax.swing.JTextField fullNameTextField;
     private javax.swing.JButton insertButton;

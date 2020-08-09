@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 public class Cantin extends javax.swing.JFrame {
 
     /**
@@ -16,7 +18,44 @@ public class Cantin extends javax.swing.JFrame {
     public Cantin() {
         initComponents();
         setLocationRelativeTo(null);
+        display();
     }
+    
+    
+    private void display(){
+        int cnt;
+        
+        try {
+            statement=connect.prepareStatement("select *from cantin");
+            result=statement.executeQuery();
+            ResultSetMetaData resMeta = result.getMetaData();
+            
+            cnt = resMeta.getColumnCount();
+            DefaultTableModel dt= (DefaultTableModel)contentTable.getModel();
+            dt.setRowCount(0);
+            while(result.next()){
+                
+                Vector store= new Vector();
+                
+                for(int i=1; i<=cnt; i++){
+                    
+                    store.add(result.getString("foodname"));
+                    store.add(result.getString("available"));
+                    store.add(result.getString("price"));
+                    
+                }
+                dt.addRow(store);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Cantin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setDecision(String value){
+        decision = value;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,18 +67,18 @@ public class Cantin extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        contentTable = new javax.swing.JTable();
+        titleLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        quoteLabel = new javax.swing.JLabel();
+        foodNameLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton12 = new javax.swing.JButton();
+        foodNameTextField = new javax.swing.JTextPane();
+        selectButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        contentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -47,40 +86,50 @@ public class Cantin extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Name", "Available", "Price"
+                "Food Name", "Available No", "Price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        contentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contentTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(contentTable);
 
-        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(175, 5, 73));
-        jLabel3.setText("  Cantin");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(175, 5, 73));
+        titleLabel.setText("  Cantin");
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("Back");
-
-        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel2.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("  Don't live to eat, eat to live");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Food Name:");
-
-        jTextPane1.setMinimumSize(new java.awt.Dimension(6, 18));
-        jTextPane1.setPreferredSize(new java.awt.Dimension(6, 18));
-        jScrollPane2.setViewportView(jTextPane1);
-
-        jButton12.setBackground(new java.awt.Color(153, 255, 153));
-        jButton12.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 0, 0));
-        jButton12.setText("Select");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        quoteLabel.setBackground(new java.awt.Color(255, 204, 204));
+        quoteLabel.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
+        quoteLabel.setForeground(new java.awt.Color(0, 0, 204));
+        quoteLabel.setText("  Don't live to eat, eat to live");
+
+        foodNameLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        foodNameLabel.setText("Food Name:");
+
+        foodNameTextField.setMinimumSize(new java.awt.Dimension(6, 18));
+        foodNameTextField.setPreferredSize(new java.awt.Dimension(6, 18));
+        jScrollPane2.setViewportView(foodNameTextField);
+
+        selectButton.setBackground(new java.awt.Color(153, 255, 153));
+        selectButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        selectButton.setForeground(new java.awt.Color(204, 0, 0));
+        selectButton.setText("Select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectButtonActionPerformed(evt);
             }
         });
 
@@ -96,20 +145,20 @@ public class Cantin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jButton2)
+                        .addComponent(backButton)
                         .addGap(273, 273, 273)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foodNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(376, 376, 376)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,27 +166,46 @@ public class Cantin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(foodNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_selectButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        if(decision.equals("Student")){
+            dispose();
+            new StudentDashboard().setVisible(true);
+        }
+        else if(decision.equals("Teacher")){
+            dispose();
+            new TeacherDashboard().setVisible(true);
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
+        int row = contentTable.getSelectedRow();
+        
+        DefaultTableModel table = (DefaultTableModel)contentTable.getModel();
+        
+        foodNameTextField.setText(table.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_contentTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -174,16 +242,26 @@ public class Cantin extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    ///custom variables.
+    SQL objCantin = new SQL();
+    
+    Connection connect = objCantin.connection();
+    
+    PreparedStatement statement;
+    ResultSet result;
+    
+    private String decision;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton backButton;
+    private javax.swing.JTable contentTable;
+    private javax.swing.JLabel foodNameLabel;
+    private javax.swing.JTextPane foodNameTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel quoteLabel;
+    private javax.swing.JButton selectButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

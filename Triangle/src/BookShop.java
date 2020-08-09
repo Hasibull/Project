@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 public class BookShop extends javax.swing.JFrame {
 
     /**
@@ -16,6 +18,42 @@ public class BookShop extends javax.swing.JFrame {
     public BookShop() {
         initComponents();
         setLocationRelativeTo(null);
+        display();
+    }
+    
+    public void display(){
+        int cnt;
+        
+        try {
+            statement=connect.prepareStatement("select *from bookshop");
+            result=statement.executeQuery();
+            ResultSetMetaData resMeta = result.getMetaData();
+            
+            cnt = resMeta.getColumnCount();
+            DefaultTableModel dt= (DefaultTableModel)contentTable.getModel();
+            dt.setRowCount(0);
+            while(result.next()){
+                
+                Vector store= new Vector();
+                
+                for(int i=1; i<=cnt; i++){
+                    
+                    store.add(result.getString("book name"));
+                    store.add(result.getString("author"));
+                    store.add(result.getString("available"));
+                    store.add(result.getString("price"));
+                    
+                }
+                dt.addRow(store);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(BookShop.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setDecision(String value){
+        decision = value;
     }
 
     /**
@@ -29,14 +67,14 @@ public class BookShop extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        contentTable = new javax.swing.JTable();
+        bookNameLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jButton12 = new javax.swing.JButton();
+        bookNameTextField = new javax.swing.JTextPane();
+        selectButton = new javax.swing.JButton();
 
         jTextPane1.setMinimumSize(new java.awt.Dimension(6, 18));
         jTextPane1.setPreferredSize(new java.awt.Dimension(6, 18));
@@ -44,43 +82,53 @@ public class BookShop extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(175, 5, 73));
-        jLabel3.setText("Book Shop");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(175, 5, 73));
+        titleLabel.setText("Book Shop");
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 0, 0));
-        jButton4.setText("Back");
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        contentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Available", "Price"
+                "Book Name", "Author Name", "Available", "Price"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        contentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contentTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(contentTable);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Book Name:");
+        bookNameLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        bookNameLabel.setText("Book Name:");
 
-        jTextPane2.setMinimumSize(new java.awt.Dimension(6, 18));
-        jTextPane2.setPreferredSize(new java.awt.Dimension(6, 18));
-        jScrollPane4.setViewportView(jTextPane2);
+        bookNameTextField.setMinimumSize(new java.awt.Dimension(6, 18));
+        bookNameTextField.setPreferredSize(new java.awt.Dimension(6, 18));
+        jScrollPane4.setViewportView(bookNameTextField);
 
-        jButton12.setBackground(new java.awt.Color(153, 255, 153));
-        jButton12.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 0, 0));
-        jButton12.setText("Select");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        selectButton.setBackground(new java.awt.Color(153, 255, 153));
+        selectButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        selectButton.setForeground(new java.awt.Color(204, 0, 0));
+        selectButton.setText("Select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                selectButtonActionPerformed(evt);
             }
         });
 
@@ -92,46 +140,64 @@ public class BookShop extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jButton4)
+                        .addComponent(backButton)
                         .addGap(174, 174, 174)
-                        .addComponent(jLabel3))
+                        .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(bookNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addGap(304, 304, 304)
+                        .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_selectButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        if(decision.equals("Student")){
+            dispose();
+            new StudentDashboard().setVisible(true);
+        }
+        else if(decision.equals("Teacher")){
+            dispose();
+            new TeacherDashboard().setVisible(true);
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
+        int row = contentTable.getSelectedRow();
+        DefaultTableModel model= (DefaultTableModel)contentTable.getModel();
+        
+        bookNameTextField.setText(model.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_contentTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -167,17 +233,28 @@ public class BookShop extends javax.swing.JFrame {
             }
         });
     }
+    
+    //custom variables.
+    
+    SQL objBook = new SQL();
+    
+    Connection connect = objBook.connection();
+    
+    PreparedStatement statement;
+    ResultSet result;
+    
+    private String decision;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel bookNameLabel;
+    private javax.swing.JTextPane bookNameTextField;
+    private javax.swing.JTable contentTable;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JButton selectButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

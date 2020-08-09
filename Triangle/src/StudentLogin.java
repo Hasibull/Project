@@ -10,16 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
 public class StudentLogin extends javax.swing.JFrame {
 
     /**
@@ -34,7 +25,7 @@ public class StudentLogin extends javax.swing.JFrame {
         int cnt;
         
         try {
-            statement = connect.prepareStatement("select *from studentlogin");
+            statement = connect.prepareStatement("select *from studentinfo");
             result = statement.executeQuery();
             
             ResultSetMetaData resMeta = result.getMetaData();
@@ -43,8 +34,8 @@ public class StudentLogin extends javax.swing.JFrame {
             
             while(result.next()){
                 for(int i=1; i<=cnt; i++){
-                    ID.add(result.getString("ID"));
-                    Password.add(result.getString("Password"));
+                    studentId.add(result.getString("studentid"));
+                    Password.add(result.getString("studentpassword"));
                 }
             }
         }
@@ -62,44 +53,44 @@ public class StudentLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        IDF = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        PDF = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        studentBackButton = new javax.swing.JButton();
-        studentLoginButton = new javax.swing.JButton();
+        studentIdLabel = new javax.swing.JLabel();
+        studentIdTextField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JTextField();
+        titleLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Student ID :");
+        studentIdLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        studentIdLabel.setText("Student ID :");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Password :");
+        passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        passwordLabel.setText("Password :");
 
-        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel3.setText("Enter your information");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 0, 204));
+        titleLabel.setText("Enter your information");
 
-        studentBackButton.setBackground(new java.awt.Color(255, 153, 153));
-        studentBackButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        studentBackButton.setForeground(new java.awt.Color(204, 0, 0));
-        studentBackButton.setText("Back");
-        studentBackButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentBackButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        studentLoginButton.setBackground(new java.awt.Color(0, 95, 45));
-        studentLoginButton.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
-        studentLoginButton.setForeground(new java.awt.Color(255, 255, 0));
-        studentLoginButton.setText("Login");
-        studentLoginButton.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setBackground(new java.awt.Color(0, 95, 45));
+        loginButton.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 0));
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentLoginButtonActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
 
@@ -112,59 +103,59 @@ public class StudentLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(studentIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IDF, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(PDF)))
+                            .addComponent(studentIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(passwordTextField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(studentBackButton))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(216, 216, 216)
-                        .addComponent(studentLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(studentBackButton)
+                .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IDF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
-                .addComponent(studentLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void studentBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         dispose();
         new HomePage().setVisible(true);
-    }//GEN-LAST:event_studentBackButtonActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void studentLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLoginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         getValue();
         getInput();
-        Iterator it=ID.iterator();
+        Iterator it=studentId.iterator();
         int ck=0,i=0;
         
         while(it.hasNext()){
-            String ch=(String)ID.get(i);
+            String ch=(String)studentId.get(i);
             String ch1=(String)Password.get(i);
             if(inputedID.equals(ch) && inputedPassword.equals(ch1)){
                 ck=1;
@@ -172,7 +163,7 @@ public class StudentLogin extends javax.swing.JFrame {
                 new StudentDashboard().setVisible(true);
                 break;
             }
-            if(i<ID.size()-1)
+            if(i<studentId.size()-1)
                 i++;
             else
                 break;
@@ -184,11 +175,11 @@ public class StudentLogin extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null,"Enter correct information !!");
         }
-    }//GEN-LAST:event_studentLoginButtonActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     private void getValue(){
-        inputedID = IDF.getText();
-        inputedPassword = PDF.getText();
+        inputedID = studentIdTextField.getText();
+        inputedPassword = passwordTextField.getText();
     }
     /**
      * @param args the command line arguments
@@ -235,16 +226,16 @@ public class StudentLogin extends javax.swing.JFrame {
     PreparedStatement statement;
     ResultSet result;
     
-    Vector ID = new Vector();
+    Vector studentId = new Vector();
     Vector Password = new Vector();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IDF;
-    private javax.swing.JTextField PDF;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton studentBackButton;
-    private javax.swing.JButton studentLoginButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField passwordTextField;
+    private javax.swing.JLabel studentIdLabel;
+    private javax.swing.JTextField studentIdTextField;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

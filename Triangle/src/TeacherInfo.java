@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Hasibul
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 public class TeacherInfo extends javax.swing.JFrame {
 
     /**
@@ -16,6 +18,41 @@ public class TeacherInfo extends javax.swing.JFrame {
     public TeacherInfo() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    private void display(String val){
+        int cnt;
+        
+        try {
+            statement=connect.prepareStatement("select *from teacherinformation");
+            result=statement.executeQuery();
+            ResultSetMetaData resMeta = result.getMetaData();
+            
+            cnt = resMeta.getColumnCount();
+            DefaultTableModel dt= (DefaultTableModel)contentTable.getModel();
+            dt.setRowCount(0);
+            while(result.next()){
+                
+                Vector store= new Vector();
+                
+                for(int i=1; i<=cnt; i++){
+                    
+                    if(result.getString("subject").equals(val) || result.getString("subject").equals(val.toLowerCase())){
+                        store.add(result.getString("fullname"));
+                        store.add(result.getString("email"));
+                        store.add(result.getString("mobileno"));
+                    }
+                    
+                }
+                
+                if(!store.isEmpty()){
+                    dt.addRow(store);
+                }
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(TeacherInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,15 +65,15 @@ public class TeacherInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        contentTable = new javax.swing.JTable();
+        titleLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        selectSubjectLabel = new javax.swing.JLabel();
+        selectSubjectCombobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        contentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -47,27 +84,32 @@ public class TeacherInfo extends javax.swing.JFrame {
                 "Name", "Email", "Phone No:"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(contentTable);
 
-        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(175, 5, 73));
-        jLabel3.setText(" Teacher's Info");
+        titleLabel.setBackground(new java.awt.Color(255, 204, 204));
+        titleLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(175, 5, 73));
+        titleLabel.setText(" Teacher's Info");
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(255, 153, 153));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 0, 0));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Select Subject:");
+        selectSubjectLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        selectSubjectLabel.setText("Select Subject:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "Biology", "Chemistry", "Physics", "ICT", "Bangla", "English" }));
+        selectSubjectCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "Biology", "Chemistry", "Physics", "ICT", "Bangla", "English" }));
+        selectSubjectCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectSubjectComboboxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,14 +119,14 @@ public class TeacherInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jButton2)
+                        .addComponent(backButton)
                         .addGap(213, 213, 213)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(selectSubjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectSubjectCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(71, 71, 71))
@@ -94,14 +136,14 @@ public class TeacherInfo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectSubjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(selectSubjectCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -111,9 +153,36 @@ public class TeacherInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dispose();
+        new StudentDashboard().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void selectSubjectComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSubjectComboboxActionPerformed
+        int value = selectSubjectCombobox.getSelectedIndex();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(value == 0){
+            display("Math");
+        }
+        else if(value == 1){
+            display("Biology");
+        }
+        else if(value == 2){
+            display("Chemistry");
+        }
+        else if(value == 3){
+            display("Physics");
+        }
+        else if(value == 4){
+            display("ICT");
+        }
+        else if(value == 5){
+            display("Bangla");
+        }
+        else if(value == 6){
+            display("English");
+        }
+    }//GEN-LAST:event_selectSubjectComboboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,13 +218,21 @@ public class TeacherInfo extends javax.swing.JFrame {
             }
         });
     }
+    
+    ///custom variables.
+    SQL objStudentInfo = new SQL();
+    
+    Connection connect = objStudentInfo.connection();
+    
+    PreparedStatement statement;
+    ResultSet result;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton backButton;
+    private javax.swing.JTable contentTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> selectSubjectCombobox;
+    private javax.swing.JLabel selectSubjectLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
