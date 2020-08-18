@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -188,7 +189,7 @@ public class Library extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "sorry, we are still working on this feature!\nHope it will added soon!");
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

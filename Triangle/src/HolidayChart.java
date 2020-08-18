@@ -38,9 +38,9 @@ public class HolidayChart extends javax.swing.JFrame {
                 
                 for(int i=1; i<=cnt; i++){
                     
-                    store.add(result.getString("holiday name"));
+                    store.add(result.getString("holidayname"));
                     store.add(result.getString("duration"));
-                    store.add(result.getString("total day"));
+                    store.add(result.getString("totalday"));
                     
                 }
                 dt.addRow(store);

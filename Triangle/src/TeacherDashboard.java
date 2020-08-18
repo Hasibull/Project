@@ -38,6 +38,7 @@ public class TeacherDashboard extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         salaryButton = new javax.swing.JButton();
         holidayChartButton = new javax.swing.JButton();
+        publishResultButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +101,11 @@ public class TeacherDashboard extends javax.swing.JFrame {
         salaryButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         salaryButton.setForeground(new java.awt.Color(204, 0, 0));
         salaryButton.setText("Salary");
+        salaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryButtonActionPerformed(evt);
+            }
+        });
 
         holidayChartButton.setBackground(new java.awt.Color(153, 255, 153));
         holidayChartButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -108,6 +114,16 @@ public class TeacherDashboard extends javax.swing.JFrame {
         holidayChartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 holidayChartButtonActionPerformed(evt);
+            }
+        });
+
+        publishResultButton.setBackground(new java.awt.Color(153, 255, 153));
+        publishResultButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        publishResultButton.setForeground(new java.awt.Color(204, 0, 0));
+        publishResultButton.setText("Publish Result");
+        publishResultButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publishResultButtonActionPerformed(evt);
             }
         });
 
@@ -130,7 +146,8 @@ public class TeacherDashboard extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(libraryButton)
                                 .addGap(34, 34, 34)
-                                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(publishResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addComponent(cantinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +176,9 @@ public class TeacherDashboard extends javax.swing.JFrame {
                 .addComponent(holidayChartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(salaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(publishResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,6 +229,18 @@ public class TeacherDashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void salaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryButtonActionPerformed
+        JOptionPane.showMessageDialog(this, "Sorry, we get trouble to implement the Payment Gateway System,\nDue to internet problem and resourses\n,Hope we can add this soon!\n");
+    }//GEN-LAST:event_salaryButtonActionPerformed
+
+    private void publishResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publishResultButtonActionPerformed
+        dispose();
+        ResultEditable obj = new ResultEditable();
+        
+        obj.setWhoCall("Teacher");
+        obj.setVisible(true);
+    }//GEN-LAST:event_publishResultButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +282,7 @@ public class TeacherDashboard extends javax.swing.JFrame {
     private javax.swing.JButton cantinButton;
     private javax.swing.JButton holidayChartButton;
     private javax.swing.JButton libraryButton;
+    private javax.swing.JButton publishResultButton;
     private javax.swing.JButton salaryButton;
     private javax.swing.JButton studentInfoButton;
     private javax.swing.JLabel titleLabel;

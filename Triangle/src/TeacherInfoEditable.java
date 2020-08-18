@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -234,9 +235,24 @@ public class TeacherInfoEditable extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         try {
             
-            statement = connect.prepareStatement("select *from teacherinformation");
+            statement = connect.prepareStatement("delete from teacherinformation where fullname=?");
             
-            statement.executeUpdate();
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, oldName);
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this,"Deleted!");
+                
+                editNameTextField.setText("");
+                editEmailTextField.setText("");
+                editPhoneNoTextField.setText("");
+                
+                display(displayval);
+            }
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(TeacherInfoEditable.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,38 +263,71 @@ public class TeacherInfoEditable extends javax.swing.JFrame {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         
+        String teacherName = editNameTextField.getText();
+        String email = editEmailTextField.getText();
+        String phoneNo = editPhoneNoTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update teacherinformation set fullname=?, email=?, mobileno=? where fullname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, teacherName);
+                statement.setString(2, email);
+                statement.setString(3, phoneNo);
+                statement.setString(4, oldName);
+
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Updated!");
+                
+                editNameTextField.setText("");
+                editEmailTextField.setText("");
+                editPhoneNoTextField.setText("");
+                display(displayval);
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(TeacherInfoEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void selectSubjectComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSubjectComboboxActionPerformed
         int value = selectSubjectCombobox.getSelectedIndex();
         
         if(value == 0){
-            display("Math");
+            displayval="Math";
         }
         else if(value == 1){
-            display("Biology");
+            displayval="Biology";
         }
         else if(value == 2){
-            display("Chemistry");
+            displayval="Chemistry";
         }
         else if(value == 3){
-            display("Physics");
+            displayval="Physics";
         }
         else if(value == 4){
-            display("ICT");
+            displayval="ICT";
         }
         else if(value == 5){
-            display("Bangla");
+            displayval="Bangla";
         }
         else if(value == 6){
-            display("English");
+            displayval="English";
         }
+        
+        display(displayval);
     }//GEN-LAST:event_selectSubjectComboboxActionPerformed
 
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
         int row = contentTable.getSelectedRow();
         
         DefaultTableModel model = (DefaultTableModel) contentTable.getModel();
+        oldName = model.getValueAt(row, 0).toString();
         
         editNameTextField.setText(model.getValueAt(row, 0).toString());
         editEmailTextField.setText(model.getValueAt(row, 1).toString());
@@ -333,6 +382,8 @@ public class TeacherInfoEditable extends javax.swing.JFrame {
     Vector name = new Vector();
     Vector phoneNo = new Vector();
     Vector email = new Vector();
+    
+    private String displayval,oldName;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

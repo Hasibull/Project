@@ -54,6 +54,10 @@ public class TeacherInfo extends javax.swing.JFrame {
             Logger.getLogger(TeacherInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void setWhoCall(String val){
+        whoCall = val;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,7 +159,13 @@ public class TeacherInfo extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         dispose();
-        new StudentDashboard().setVisible(true);
+        
+        if(whoCall.equals("Student")){
+            new StudentDashboard().setVisible(true);
+        }
+        else if(whoCall.equals("Guardian")){
+            new GuardianDashboard().setVisible(true);
+        }
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void selectSubjectComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSubjectComboboxActionPerformed
@@ -226,6 +236,8 @@ public class TeacherInfo extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    
+    private String whoCall;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

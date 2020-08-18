@@ -21,12 +21,12 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton9 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        publishResultButton = new javax.swing.JButton();
+        addNewTeacherInfoButton = new javax.swing.JButton();
+        existingInfoButton = new javax.swing.JButton();
+        admitStudentButton = new javax.swing.JButton();
 
         jButton9.setBackground(new java.awt.Color(153, 255, 153));
         jButton9.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -35,8 +35,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\Java projects\\Images\\administrator_logo.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
+        imageLabel.setIcon(new javax.swing.ImageIcon("F:\\Java projects\\Images\\administrator_logo.jpg")); // NOI18N
+        imageLabel.setText("jLabel1");
 
         backButton.setBackground(new java.awt.Color(255, 153, 153));
         backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -48,38 +48,43 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(153, 255, 153));
-        jButton10.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(204, 0, 0));
-        jButton10.setText("Published Result");
-
-        jButton11.setBackground(new java.awt.Color(153, 255, 153));
-        jButton11.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(204, 0, 0));
-        jButton11.setText("Add Teacher info");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        publishResultButton.setBackground(new java.awt.Color(153, 255, 153));
+        publishResultButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        publishResultButton.setForeground(new java.awt.Color(204, 0, 0));
+        publishResultButton.setText("Published Result");
+        publishResultButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                publishResultButtonActionPerformed(evt);
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(153, 255, 153));
-        jButton14.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(204, 0, 0));
-        jButton14.setText("Existing Info");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        addNewTeacherInfoButton.setBackground(new java.awt.Color(153, 255, 153));
+        addNewTeacherInfoButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        addNewTeacherInfoButton.setForeground(new java.awt.Color(204, 0, 0));
+        addNewTeacherInfoButton.setText("Add Teacher info");
+        addNewTeacherInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                addNewTeacherInfoButtonActionPerformed(evt);
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(153, 255, 153));
-        jButton15.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(204, 0, 0));
-        jButton15.setText("Admit Student");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        existingInfoButton.setBackground(new java.awt.Color(153, 255, 153));
+        existingInfoButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        existingInfoButton.setForeground(new java.awt.Color(204, 0, 0));
+        existingInfoButton.setText("Existing Info");
+        existingInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                existingInfoButtonActionPerformed(evt);
+            }
+        });
+
+        admitStudentButton.setBackground(new java.awt.Color(153, 255, 153));
+        admitStudentButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        admitStudentButton.setForeground(new java.awt.Color(204, 0, 0));
+        admitStudentButton.setText("Admit Student");
+        admitStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admitStudentButtonActionPerformed(evt);
             }
         });
 
@@ -91,19 +96,19 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(185, 185, 185))
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton15)
+                .addComponent(admitStudentButton)
                 .addGap(32, 32, 32)
-                .addComponent(jButton10)
+                .addComponent(publishResultButton)
                 .addGap(34, 34, 34)
-                .addComponent(jButton11)
+                .addComponent(addNewTeacherInfoButton)
                 .addGap(45, 45, 45))
             .addGroup(layout.createSequentialGroup()
                 .addGap(233, 233, 233)
-                .addComponent(jButton14)
+                .addComponent(existingInfoButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,17 +117,17 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(backButton)))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(publishResultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admitStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addNewTeacherInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(existingInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
@@ -138,20 +143,29 @@ public class AdminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void admitStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admitStudentButtonActionPerformed
         dispose();
         new AdmitNewStudent().setVisible(true);
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_admitStudentButtonActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void addNewTeacherInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTeacherInfoButtonActionPerformed
         dispose();
         new AddNewTeacherInfo().setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_addNewTeacherInfoButtonActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void existingInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existingInfoButtonActionPerformed
         dispose();
         new ExistingInfo().setVisible(true);
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_existingInfoButtonActionPerformed
+
+    private void publishResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publishResultButtonActionPerformed
+        dispose();
+        
+        ResultEditable obj = new ResultEditable();
+        
+        obj.setWhoCall("Admin");
+        obj.setVisible(true);
+    }//GEN-LAST:event_publishResultButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +203,12 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addNewTeacherInfoButton;
+    private javax.swing.JButton admitStudentButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
+    private javax.swing.JButton existingInfoButton;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton publishResultButton;
     // End of variables declaration//GEN-END:variables
 }

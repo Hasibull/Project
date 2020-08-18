@@ -29,6 +29,7 @@ public class GuardianDashboard extends javax.swing.JFrame {
         feedBackButton = new javax.swing.JButton();
         quoteLabel = new javax.swing.JLabel();
         bookShopButton = new javax.swing.JButton();
+        feedBackButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,11 @@ public class GuardianDashboard extends javax.swing.JFrame {
         paymentButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         paymentButton.setForeground(new java.awt.Color(204, 0, 0));
         paymentButton.setText("Payment");
+        paymentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentButtonActionPerformed(evt);
+            }
+        });
 
         resultButton.setBackground(new java.awt.Color(153, 255, 153));
         resultButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -71,6 +77,11 @@ public class GuardianDashboard extends javax.swing.JFrame {
         feedBackButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         feedBackButton.setForeground(new java.awt.Color(204, 0, 0));
         feedBackButton.setText("Feedback");
+        feedBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feedBackButtonActionPerformed(evt);
+            }
+        });
 
         quoteLabel.setBackground(new java.awt.Color(255, 204, 204));
         quoteLabel.setFont(new java.awt.Font("Vivaldi", 3, 27)); // NOI18N
@@ -87,28 +98,43 @@ public class GuardianDashboard extends javax.swing.JFrame {
             }
         });
 
+        feedBackButton1.setBackground(new java.awt.Color(153, 255, 153));
+        feedBackButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        feedBackButton1.setForeground(new java.awt.Color(204, 0, 0));
+        feedBackButton1.setText("Class Routine");
+        feedBackButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feedBackButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(teacherInfoButton)
-                            .addComponent(paymentButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(feedBackButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(resultButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookShopButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(242, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 88, Short.MAX_VALUE)
                 .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(backButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(feedBackButton1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(teacherInfoButton)
+                                .addComponent(paymentButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(feedBackButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(resultButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,15 +145,17 @@ public class GuardianDashboard extends javax.swing.JFrame {
                 .addComponent(quoteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(teacherInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(paymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
+                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(feedBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(resultButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(bookShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(paymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(feedBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,25 +163,56 @@ public class GuardianDashboard extends javax.swing.JFrame {
 
     private void teacherInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherInfoButtonActionPerformed
         dispose();
-        new TeacherInfo().setVisible(true);
+        TeacherInfo obj = new TeacherInfo();
+        
+        obj.setWhoCall("Guardian");
+        
+        obj.setVisible(true);
     }//GEN-LAST:event_teacherInfoButtonActionPerformed
 
     private void resultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultButtonActionPerformed
-        // TODO add your handling code here:
+        
+        dispose();
+        
+        Result obj = new Result();
+        
+        obj.setWhoCall("Guardian");
+        obj.setVisible(true);
+        
     }//GEN-LAST:event_resultButtonActionPerformed
 
     private void bookShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookShopButtonActionPerformed
         dispose();
-        new BookShop().setVisible(true);
+        BookShop obj = new BookShop();
+        
+        obj.setDecision("Guardian");
+        obj.setVisible(true);
     }//GEN-LAST:event_bookShopButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        String value = JOptionPane.showInputDialog(this, "Are you want to Logout?\nEnter Y for yes");
+        String value = JOptionPane.showInputDialog(this, "Are you want to Logout?\nEnter Y for Y   es\nEnter N for No.");
         if(value.equals("Y") || value.equals("y")){
             dispose();
             new HomePage().setVisible(true);
         }
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void feedBackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedBackButton1ActionPerformed
+        dispose();
+        
+        ClassRoutine obj = new ClassRoutine();
+        
+        obj.setWhoCall("Guardian");
+        obj.setVisible(true);
+    }//GEN-LAST:event_feedBackButton1ActionPerformed
+
+    private void feedBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedBackButtonActionPerformed
+        JOptionPane.showMessageDialog(this, "Sorry, Due to internet problem we cann't work on this feature!\n");
+    }//GEN-LAST:event_feedBackButtonActionPerformed
+
+    private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
+        JOptionPane.showMessageDialog(this, "Sorry, we get trouble to implement the Payment Gateway System,\nDue to internet problem and resourses\n,Hope we can add this soon!\n");
+    }//GEN-LAST:event_paymentButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +253,7 @@ public class GuardianDashboard extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JButton bookShopButton;
     private javax.swing.JButton feedBackButton;
+    private javax.swing.JButton feedBackButton1;
     private javax.swing.JButton paymentButton;
     private javax.swing.JLabel quoteLabel;
     private javax.swing.JButton resultButton;

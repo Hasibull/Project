@@ -18,6 +18,11 @@ public class ClassRoutine extends javax.swing.JFrame {
         display();
     }
     
+    
+    public void setWhoCall(String val){
+        whoCall = val;
+    }
+    
     public void display(){
         int cnt;
         
@@ -89,6 +94,11 @@ public class ClassRoutine extends javax.swing.JFrame {
         backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         backButton.setForeground(new java.awt.Color(204, 0, 0));
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +133,17 @@ public class ClassRoutine extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dispose();
+        
+        if(whoCall.equals("Guardian")){
+            new GuardianDashboard().setVisible(true);
+        }
+        else if(whoCall.equals("Student")){
+            new StudentDashboard().setVisible(true);
+        }
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +186,8 @@ public class ClassRoutine extends javax.swing.JFrame {
     Connection connect = objRoutine.connection();
     PreparedStatement statement;
     ResultSet result;
+    
+    private String whoCall;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

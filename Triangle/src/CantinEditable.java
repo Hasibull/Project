@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -75,6 +76,7 @@ public class CantinEditable extends javax.swing.JFrame {
         deletButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         contentTable = new javax.swing.JTable();
+        insertButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +154,16 @@ public class CantinEditable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(contentTable);
 
+        insertButton.setBackground(new java.awt.Color(153, 255, 153));
+        insertButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        insertButton.setForeground(new java.awt.Color(204, 0, 0));
+        insertButton.setText("Insert");
+        insertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,26 +176,30 @@ public class CantinEditable extends javax.swing.JFrame {
                         .addGap(304, 304, 304)
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(125, 125, 125)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(editFoodNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editFoodNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(foodNameLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(foodNameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(foodNameLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(foodNameLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,7 +227,8 @@ public class CantinEditable extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67))))
         );
 
@@ -224,22 +241,113 @@ public class CantinEditable extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        
+        String foodName = editFoodNameTextField.getText();
+        String available = editAvailableNoTextField.getText();
+        String price = editPriceTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update cantin set foodname=?, available=?, price=? where foodname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, foodName);
+                statement.setString(2, available);
+                statement.setString(3, price);
+                statement.setString(4, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this,"Updated!");
+                
+                editFoodNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                editPriceTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(CantinEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
-
+        try {
+            
+            statement = connect.prepareStatement("delete from cantin where foodname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this,"Deleted!");
+                
+                editFoodNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                editPriceTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(CantinEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
         int row = contentTable.getSelectedRow();
 
         DefaultTableModel table = (DefaultTableModel)contentTable.getModel();
-
+        
+        oldName = table.getValueAt(row, 0).toString();
+        
         editFoodNameTextField.setText(table.getValueAt(row, 0).toString());
         editAvailableNoTextField.setText(table.getValueAt(row, 1).toString());
         editPriceTextField.setText(table.getValueAt(row, 2).toString());
     }//GEN-LAST:event_contentTableMouseClicked
+
+    private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+        
+        String foodName = editFoodNameTextField.getText();
+        String available = editAvailableNoTextField.getText();
+        String price = editPriceTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("insert into cantin (foodname, available, price) values(?,?,?)");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to insert?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, foodName);
+                statement.setString(2, available);
+                statement.setString(3, price);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this,"Inserted!");
+                
+                editFoodNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                editPriceTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(CantinEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_insertButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +391,8 @@ public class CantinEditable extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    
+    private String oldName;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -294,6 +404,7 @@ public class CantinEditable extends javax.swing.JFrame {
     private javax.swing.JTextPane editPriceTextField;
     private javax.swing.JLabel foodNameLabel;
     private javax.swing.JLabel foodNameLabel2;
+    private javax.swing.JButton insertButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

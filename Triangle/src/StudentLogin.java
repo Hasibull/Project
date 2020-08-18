@@ -35,7 +35,8 @@ public class StudentLogin extends javax.swing.JFrame {
             while(result.next()){
                 for(int i=1; i<=cnt; i++){
                     studentId.add(result.getString("studentid"));
-                    Password.add(result.getString("studentpassword"));
+                    password.add(result.getString("studentpassword"));
+                    phoneNo.add(result.getString("mobileno"));
                 }
             }
         }
@@ -60,6 +61,8 @@ public class StudentLogin extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
+        studentIdLabel1 = new javax.swing.JLabel();
+        phoneNoTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +97,9 @@ public class StudentLogin extends javax.swing.JFrame {
             }
         });
 
+        studentIdLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        studentIdLabel1.setText("Phone No:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,22 +107,25 @@ public class StudentLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(studentIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(studentIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(passwordTextField)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                        .addGap(105, 105, 105)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentIdLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(studentIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(phoneNoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                            .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
@@ -131,13 +140,17 @@ public class StudentLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                    .addComponent(studentIdLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,8 +169,9 @@ public class StudentLogin extends javax.swing.JFrame {
         
         while(it.hasNext()){
             String ch=(String)studentId.get(i);
-            String ch1=(String)Password.get(i);
-            if(inputedID.equals(ch) && inputedPassword.equals(ch1)){
+            String ch1=(String)password.get(i);
+            String ch2=(String)phoneNo.get(i);
+            if(inputedID.equals(ch) && inputedPassword.equals(ch1) && inputedPhoneNo.equals(ch2)){
                 ck=1;
                 dispose();
                 new StudentDashboard().setVisible(true);
@@ -180,6 +194,7 @@ public class StudentLogin extends javax.swing.JFrame {
     private void getValue(){
         inputedID = studentIdTextField.getText();
         inputedPassword = passwordTextField.getText();
+        inputedPhoneNo = phoneNoTextField.getText();
     }
     /**
      * @param args the command line arguments
@@ -218,7 +233,7 @@ public class StudentLogin extends javax.swing.JFrame {
 
     //custom variables
     
-    private String inputedID,inputedPassword;
+    private String inputedID,inputedPassword,inputedPhoneNo;
     
     SQL objStd = new SQL();
     
@@ -227,14 +242,17 @@ public class StudentLogin extends javax.swing.JFrame {
     ResultSet result;
     
     Vector studentId = new Vector();
-    Vector Password = new Vector();
+    Vector password = new Vector();
+    Vector phoneNo = new Vector();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JTextField phoneNoTextField;
     private javax.swing.JLabel studentIdLabel;
+    private javax.swing.JLabel studentIdLabel1;
     private javax.swing.JTextField studentIdTextField;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -79,6 +80,7 @@ public class LibraryEditable extends javax.swing.JFrame {
         deletButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         contentTable = new javax.swing.JTable();
+        insertButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,6 +165,16 @@ public class LibraryEditable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(contentTable);
 
+        insertButton.setBackground(new java.awt.Color(153, 255, 153));
+        insertButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        insertButton.setForeground(new java.awt.Color(204, 0, 0));
+        insertButton.setText("Insert");
+        insertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,25 +188,21 @@ public class LibraryEditable extends javax.swing.JFrame {
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(94, 94, 94)
-                                            .addComponent(editBookIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(78, 78, 78)
-                                            .addComponent(editBookNameLabel)))
-                                    .addGap(37, 37, 37)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(96, 96, 96))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(79, 79, 79)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGap(94, 94, 94)
+                                    .addComponent(editBookIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(78, 78, 78)
+                                    .addComponent(editBookNameLabel)))
+                            .addGap(37, 37, 37)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(96, 96, 96)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(editAuthorNameLabel)
                                         .addComponent(editAvailableNoLabel))
@@ -203,7 +211,9 @@ public class LibraryEditable extends javax.swing.JFrame {
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(68, 68, 68)
                                     .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(107, 115, Short.MAX_VALUE))
@@ -232,7 +242,8 @@ public class LibraryEditable extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -245,11 +256,70 @@ public class LibraryEditable extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        
+        String bookId = editBookIdTextField.getText();
+        String bookName = editBookNameTextField.getText();
+        String authorName = editAuthorNameTextField.getText();
+        String available = editAvailableNoTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update library set bookid=?, bookname=?, authorname=?, availableno=? where bookname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, bookId);
+                statement.setString(2, bookName);
+                statement.setString(3, authorName);
+                statement.setString(4, available);
+                statement.setString(5, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Updated!");
+                
+                editBookIdTextField.setText("");
+                editBookNameTextField.setText("");
+                editAuthorNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(LibraryEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
-
+        
+        try {
+            
+            statement = connect.prepareStatement("delete from library where bookname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+     
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Deleted!");
+                
+                editBookIdTextField.setText("");
+                editBookNameTextField.setText("");
+                editAuthorNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                
+                display();
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(LibraryEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
@@ -257,12 +327,52 @@ public class LibraryEditable extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) contentTable.getModel();
         
+        oldName = model.getValueAt(row, 1).toString();
+        
         editBookIdTextField.setText(model.getValueAt(row, 0).toString());
         editBookNameTextField.setText(model.getValueAt(row, 1).toString());
         editAuthorNameTextField.setText(model.getValueAt(row, 2).toString());
         editAvailableNoTextField.setText(model.getValueAt(row, 3).toString());
         
     }//GEN-LAST:event_contentTableMouseClicked
+
+    private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+        
+        String bookId = editBookIdTextField.getText();
+        String bookName = editBookNameTextField.getText();
+        String authorName = editAuthorNameTextField.getText();
+        String available = editAvailableNoTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("insert into library (bookid, bookname, authorname, availableno) values(?,?,?,?)");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to insert?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, bookId);
+                statement.setString(2, bookName);
+                statement.setString(3, authorName);
+                statement.setString(4, available);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Inserted!");
+                
+                editBookIdTextField.setText("");
+                editBookNameTextField.setText("");
+                editAuthorNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(LibraryEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_insertButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +418,8 @@ public class LibraryEditable extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    
+    private String oldName;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -321,6 +433,7 @@ public class LibraryEditable extends javax.swing.JFrame {
     private javax.swing.JTextPane editBookIdTextField;
     private javax.swing.JLabel editBookNameLabel;
     private javax.swing.JTextPane editBookNameTextField;
+    private javax.swing.JButton insertButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

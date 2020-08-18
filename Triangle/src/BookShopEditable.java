@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -38,7 +39,7 @@ public class BookShopEditable extends javax.swing.JFrame {
                 
                 for(int i=1; i<=cnt; i++){
                     
-                    store.add(result.getString("book name"));
+                    store.add(result.getString("bookname"));
                     store.add(result.getString("author"));
                     store.add(result.getString("available"));
                     store.add(result.getString("price"));
@@ -249,16 +250,74 @@ public class BookShopEditable extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        String bookName = editBookNameTextField.getText();
+        String authorName = editAuthorNameTextField.getText();
+        String availableNo = editAvailableNoTextField.getText();
+        String price = editPriceTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update bookshop set bookname=?, author=?, available=?, price=? where bookname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, bookName);
+                statement.setString(2, authorName);
+                statement.setString(3, availableNo);
+                statement.setString(4, price);
+                statement.setString(5, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Updated!");
+                
+                editBookNameTextField.setText("");
+                editAuthorNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                editPriceTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(BookShopEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
-
+        try {
+            
+            statement = connect.prepareStatement("delete from bookshop where bookname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, oldName);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Deleted!");
+                
+                editBookNameTextField.setText("");
+                editAuthorNameTextField.setText("");
+                editAvailableNoTextField.setText("");
+                editPriceTextField.setText("");
+                
+                display();
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(BookShopEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
         int row = contentTable.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)contentTable.getModel();
+        
+        oldName = model.getValueAt(row, 0).toString();
 
         editBookNameTextField.setText(model.getValueAt(row, 0).toString());
         editAuthorNameTextField.setText(model.getValueAt(row, 1).toString());
@@ -308,6 +367,8 @@ public class BookShopEditable extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    
+    private String oldName;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

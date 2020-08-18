@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -74,9 +75,7 @@ public class StudentInfoEditable extends javax.swing.JFrame {
         selectClassCombobox = new javax.swing.JComboBox<>();
         updateButton = new javax.swing.JButton();
         deletButton = new javax.swing.JButton();
-        editStudentIdLabel = new javax.swing.JLabel();
         editStudentNameTextField = new javax.swing.JTextField();
-        editStudentIdTextField = new javax.swing.JTextField();
         editGuardianNameTextField = new javax.swing.JTextField();
         editGuardianNameLabel = new javax.swing.JLabel();
         editStudentNameLabel = new javax.swing.JLabel();
@@ -86,10 +85,8 @@ public class StudentInfoEditable extends javax.swing.JFrame {
         editStudentPasswordTextField = new javax.swing.JTextField();
         editGuardianPhoneNoLabel = new javax.swing.JLabel();
         editGuardianPasswordLabel = new javax.swing.JLabel();
-        editClassLabel = new javax.swing.JLabel();
         editGuardianPhoneNoTextField = new javax.swing.JTextField();
         editGuardianPasswordTextField = new javax.swing.JTextField();
-        editClassTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,9 +135,6 @@ public class StudentInfoEditable extends javax.swing.JFrame {
             }
         });
 
-        editStudentIdLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        editStudentIdLabel.setText("Edit Student ID:");
-
         editGuardianNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editGuardianNameLabel.setText("Edit Guardian Name:");
 
@@ -174,9 +168,6 @@ public class StudentInfoEditable extends javax.swing.JFrame {
         editGuardianPasswordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editGuardianPasswordLabel.setText("Edit Guardian Password:");
 
-        editClassLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        editClassLabel.setText("Edit Class:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,36 +178,30 @@ public class StudentInfoEditable extends javax.swing.JFrame {
                         .addGap(101, 101, 101)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(editStudentNameLabel)
-                            .addComponent(editStudentIdLabel)
-                            .addComponent(editStudentPasswordLabel)
-                            .addComponent(editClassLabel))
+                            .addComponent(editStudentPasswordLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(131, 131, 131)
+                                .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(editStudentPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editGuardianPasswordLabel))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(editStudentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editGuardianPhoneNoLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(263, 263, 263)
+                                    .addComponent(editGuardianNameLabel))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editClassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(132, 132, 132)
-                                        .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(editStudentPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(editGuardianPasswordLabel))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(editStudentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(editGuardianPhoneNoLabel))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(editStudentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(93, 93, 93)
-                                            .addComponent(editGuardianNameLabel))))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(editGuardianNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editGuardianPhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editGuardianPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(editGuardianNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editGuardianPhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editGuardianPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(backButton)
@@ -249,31 +234,25 @@ public class StudentInfoEditable extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editStudentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editStudentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGuardianNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGuardianNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editStudentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editStudentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGuardianPhoneNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editGuardianPhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editGuardianPhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editStudentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editStudentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editStudentPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editStudentPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGuardianPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editGuardianPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(editGuardianPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editStudentPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editStudentPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editClassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editClassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -285,27 +264,89 @@ public class StudentInfoEditable extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        
+        String studentName = editStudentNameTextField.getText();
+        String studentPassword = editStudentPasswordTextField.getText();
+        String guardianName = editGuardianNameTextField.getText();
+        String guardianPassword = editGuardianPasswordTextField.getText();
+        String guardianMobileNo = editGuardianPhoneNoTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update studentinfo set studentpassword=?, studentName=?, guardianname=? , mobileno=?, guardianpassword=? where studentid=? && Class=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, studentPassword);
+                statement.setString(2, studentName);
+                statement.setString(3, guardianName);
+                statement.setString(4, guardianPassword);
+                statement.setString(5, guardianMobileNo);
+                statement.setString(6, studentId);
+                statement.setString(7, studentClass);
+
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Updated!");
+                editStudentNameTextField.setText("");
+                editStudentPasswordTextField.setText("");
+                editGuardianNameTextField.setText("");
+                editGuardianPasswordTextField.setText("");
+                editGuardianPhoneNoTextField.setText("");
+                display(value);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(StudentInfoEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
+        try {
+            
+            statement = connect.prepareStatement("delete from studentinfo where studentid=? && Class=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, studentId);
+                statement.setString(2, studentClass);
 
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Deleted!");
+                
+                editStudentNameTextField.setText("");
+                editStudentPasswordTextField.setText("");
+                editGuardianNameTextField.setText("");
+                editGuardianPasswordTextField.setText("");
+                editGuardianPhoneNoTextField.setText("");
+                display(value);
+            }
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentInfoEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void selectClassComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectClassComboboxActionPerformed
-        int value = selectClassCombobox.getSelectedIndex();
+        value = selectClassCombobox.getSelectedIndex();
         display(value);
     }//GEN-LAST:event_selectClassComboboxActionPerformed
 
+    
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
         int row = contentTable.getSelectedRow();
         
         DefaultTableModel model = (DefaultTableModel) contentTable.getModel();
         
-        editStudentIdTextField.setText(model.getValueAt(row, 0).toString());
+        studentId = model.getValueAt(row, 0).toString();
+        studentClass = model.getValueAt(row, 3).toString();
+        
         editStudentNameTextField.setText(model.getValueAt(row, 1).toString());
         editStudentPasswordTextField.setText(model.getValueAt(row, 2).toString());
-        editClassTextField.setText(model.getValueAt(row, 3).toString());
         editGuardianNameTextField.setText(model.getValueAt(row, 4).toString());
         editGuardianPhoneNoTextField.setText(model.getValueAt(row, 5).toString());
         editGuardianPasswordTextField.setText(model.getValueAt(row, 6).toString());
@@ -354,21 +395,19 @@ public class StudentInfoEditable extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    private String studentId,studentClass;
+    private int value;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JTable contentTable;
     private javax.swing.JButton deletButton;
-    private javax.swing.JLabel editClassLabel;
-    private javax.swing.JTextField editClassTextField;
     private javax.swing.JLabel editGuardianNameLabel;
     private javax.swing.JTextField editGuardianNameTextField;
     private javax.swing.JLabel editGuardianPasswordLabel;
     private javax.swing.JTextField editGuardianPasswordTextField;
     private javax.swing.JLabel editGuardianPhoneNoLabel;
     private javax.swing.JTextField editGuardianPhoneNoTextField;
-    private javax.swing.JLabel editStudentIdLabel;
-    private javax.swing.JTextField editStudentIdTextField;
     private javax.swing.JLabel editStudentNameLabel;
     private javax.swing.JTextField editStudentNameTextField;
     private javax.swing.JLabel editStudentPasswordLabel;

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -38,9 +39,9 @@ public class HolidayChartEditable extends javax.swing.JFrame {
                 
                 for(int i=1; i<=cnt; i++){
                     
-                    store.add(result.getString("holiday name"));
+                    store.add(result.getString("holidayname"));
                     store.add(result.getString("duration"));
-                    store.add(result.getString("total day"));
+                    store.add(result.getString("totalday"));
                     
                 }
                 dt.addRow(store);
@@ -75,6 +76,7 @@ public class HolidayChartEditable extends javax.swing.JFrame {
         contentTable = new javax.swing.JTable();
         updateButton = new javax.swing.JButton();
         deletButton = new javax.swing.JButton();
+        insertButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +154,16 @@ public class HolidayChartEditable extends javax.swing.JFrame {
             }
         });
 
+        insertButton.setBackground(new java.awt.Color(153, 255, 153));
+        insertButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        insertButton.setForeground(new java.awt.Color(204, 0, 0));
+        insertButton.setText("Insert");
+        insertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,22 +176,28 @@ public class HolidayChartEditable extends javax.swing.JFrame {
                         .addGap(243, 243, 243)
                         .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(editHolidayNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editDurationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editTotalDayLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(154, 154, 154)
-                        .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editHolidayNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editDurationLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(90, 90, 90)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editTotalDayLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +224,8 @@ public class HolidayChartEditable extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62))
         );
 
@@ -219,11 +238,59 @@ public class HolidayChartEditable extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        String holidayName = editHolidayNameTextField.getText();
+        String duration = editDurationTextField.getText();
+        String totalDay = editTotalDayTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update holidaychart set holidayname=?, duration=?, totalday=? where holidayname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, holidayName);
+                statement.setString(2, duration);
+                statement.setString(3, totalDay);
+                statement.setString(4, oldName);
+
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Updated!");
+                editHolidayNameTextField.setText("");
+                editDurationTextField.setText("");
+                editTotalDayTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(HolidayChartEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
-
+        try {
+            
+            statement = connect.prepareStatement("delete from holidaychart where holidayname=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, oldName);
+                
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Deleted!");
+                
+                editHolidayNameTextField.setText("");
+                editDurationTextField.setText("");
+                editTotalDayTextField.setText("");
+                
+                display();
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(HolidayChartEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
@@ -231,10 +298,46 @@ public class HolidayChartEditable extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) contentTable.getModel();
         
+        oldName = model.getValueAt(row, 0).toString();
+        
         editHolidayNameTextField.setText(model.getValueAt(row, 0).toString());
         editDurationTextField.setText(model.getValueAt(row, 1).toString());
         editTotalDayTextField.setText(model.getValueAt(row, 2).toString());
     }//GEN-LAST:event_contentTableMouseClicked
+
+    private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+        
+        String holidayName = editHolidayNameTextField.getText();
+        String duration = editDurationTextField.getText();
+        String totalDay = editTotalDayTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("insert into holidaychart (holidayname, duration, totalday) values(?,?,?)");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want insert?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, holidayName);
+                statement.setString(2, duration);
+                statement.setString(3, totalDay);
+
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Inserted!");
+                
+                editHolidayNameTextField.setText("");
+                editDurationTextField.setText("");
+                editTotalDayTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(HolidayChartEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_insertButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +382,8 @@ public class HolidayChartEditable extends javax.swing.JFrame {
     
     PreparedStatement statement;
     ResultSet result;
+    
+    private String oldName;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -290,6 +395,7 @@ public class HolidayChartEditable extends javax.swing.JFrame {
     private javax.swing.JTextPane editHolidayNameTextField;
     private javax.swing.JLabel editTotalDayLabel;
     private javax.swing.JTextPane editTotalDayTextField;
+    private javax.swing.JButton insertButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

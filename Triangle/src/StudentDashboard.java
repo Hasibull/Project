@@ -75,6 +75,11 @@ public class StudentDashboard extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 0, 0));
         jButton3.setText("Result");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         backButton.setBackground(new java.awt.Color(255, 153, 153));
         backButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -143,6 +148,11 @@ public class StudentDashboard extends javax.swing.JFrame {
 
         myBoxImageLabel.setIcon(new javax.swing.ImageIcon("F:\\Java projects\\boxLogoCopy.jpg")); // NOI18N
         myBoxImageLabel.setText("jLabel1");
+        myBoxImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myBoxImageLabelMouseClicked(evt);
+            }
+        });
 
         myBoxTextLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         myBoxTextLabel.setText("My Box");
@@ -219,7 +229,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Sorry, we get trouble to implement the Payment Gateway System,\nDue to internet problem and resourses\n,Hope we can add this soon!\n");
     }//GEN-LAST:event_paymentButtonActionPerformed
 
     private void libraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryButtonActionPerformed
@@ -248,12 +258,19 @@ public class StudentDashboard extends javax.swing.JFrame {
 
     private void classRoutineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classRoutineButtonActionPerformed
         dispose();
-        new ClassRoutine().setVisible(true);
+        ClassRoutine obj = new ClassRoutine();
+        
+        obj.setWhoCall("Student");
+        obj.setVisible(true);
     }//GEN-LAST:event_classRoutineButtonActionPerformed
 
     private void teacherInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherInfoButtonActionPerformed
         dispose();
-        new TeacherInfo().setVisible(true);
+        
+        TeacherInfo obj = new TeacherInfo();
+        
+        obj.setWhoCall("Student");
+        obj.setVisible(true);
     }//GEN-LAST:event_teacherInfoButtonActionPerformed
 
     private void bookShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookShopButtonActionPerformed
@@ -270,6 +287,18 @@ public class StudentDashboard extends javax.swing.JFrame {
             new HomePage().setVisible(true);
         }
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+        
+        Result obj = new Result();
+        obj.setWhoCall("Student");
+        obj.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void myBoxImageLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBoxImageLabelMouseClicked
+        JOptionPane.showMessageDialog(this, "Functionality not added yet!\nHope we added soon!");
+    }//GEN-LAST:event_myBoxImageLabelMouseClicked
 
     /**
      * @param args the command line arguments

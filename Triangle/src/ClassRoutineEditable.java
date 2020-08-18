@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -81,6 +82,7 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
         routineTable = new javax.swing.JTable();
         updateButton = new javax.swing.JButton();
         deletButton = new javax.swing.JButton();
+        insertButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +157,16 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
             }
         });
 
+        insertButton.setBackground(new java.awt.Color(153, 255, 153));
+        insertButton.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        insertButton.setForeground(new java.awt.Color(204, 0, 0));
+        insertButton.setText("Insert");
+        insertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,34 +182,35 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(138, 138, 138))
             .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mondayLabel)
+                    .addComponent(sundayLabel)
+                    .addComponent(editTimeLabel))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(mondayLabel)
-                            .addComponent(sundayLabel)
-                            .addComponent(editTimeLabel))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mondayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sundayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(105, 105, 105)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(thursdayLabel)
-                            .addComponent(tuesdayLabel)
-                            .addComponent(wednesdayLabel))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tuesdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(wednesdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(thursdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143)
-                        .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(editTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mondayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sundayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(105, 105, 105)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(thursdayLabel)
+                    .addComponent(tuesdayLabel)
+                    .addComponent(wednesdayLabel))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tuesdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wednesdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(thursdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(132, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(226, 226, 226))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +242,8 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deletButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62))
         );
 
@@ -237,17 +251,86 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        String time = editTimeTextField.getText();
+        String sunday = sundayTextField.getText();
+        String monday = mondayTextField.getText();
+        String tuesday = tuesdayTextField.getText();
+        String wednesday = wednesdayTextField.getText();
+        String thursday = thursdayTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("update classroutine set time=?, sunday=?, monday=?, tuesday=?, wednesday=?, thursday=? where time=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to update?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, time);
+                statement.setString(2, sunday);
+                statement.setString(3, monday);
+                statement.setString(4, tuesday);
+                statement.setString(5, wednesday);
+                statement.setString(6, thursday);
+                statement.setString(7, oldTime);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Updated!");
+                
+                editTimeTextField.setText("");
+                sundayTextField.setText("");
+                mondayTextField.setText("");
+                tuesdayTextField.setText("");
+                wednesdayTextField.setText("");
+                thursdayTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ClassRoutineEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletButtonActionPerformed
-
+        
+        try {
+            
+            statement = connect.prepareStatement("delete from classroutine where time=?");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to delete?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                
+                statement.setString(1, oldTime);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Deleted!");
+                
+                editTimeTextField.setText("");
+                sundayTextField.setText("");
+                mondayTextField.setText("");
+                tuesdayTextField.setText("");
+                wednesdayTextField.setText("");
+                thursdayTextField.setText("");
+                
+                display();
+                
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(ClassRoutineEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_deletButtonActionPerformed
 
     private void routineTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_routineTableMouseClicked
         int row = routineTable.getSelectedRow();
         
         DefaultTableModel model = (DefaultTableModel) routineTable.getModel();
+        
+        oldTime = model.getValueAt(row, 0).toString();
+        
         editTimeTextField.setText(model.getValueAt(row, 0).toString());
         sundayTextField.setText(model.getValueAt(row, 1).toString());
         mondayTextField.setText(model.getValueAt(row, 2).toString());
@@ -260,6 +343,49 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
         dispose();
         new ExistingInfo().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+       
+        String time = editTimeTextField.getText();
+        String sunday = sundayTextField.getText();
+        String monday = mondayTextField.getText();
+        String tuesday = tuesdayTextField.getText();
+        String wednesday = wednesdayTextField.getText();
+        String thursday = thursdayTextField.getText();
+        
+        try {
+            
+            statement = connect.prepareStatement("insert into classroutine (time, sunday, monday, tuesday, wednesday, thursday) values(?,?,?,?,?,?)");
+            
+            String ck = JOptionPane.showInputDialog(this, "Are you sure want to insert?\nPress Y for Yes\nPress N for No");
+            
+            if(ck.equals("Y") || ck.equals("y")){
+                statement.setString(1, time);
+                statement.setString(2, sunday);
+                statement.setString(3, monday);
+                statement.setString(4, tuesday);
+                statement.setString(5, wednesday);
+                statement.setString(6, thursday);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Inserted!");
+                
+                editTimeTextField.setText("");
+                sundayTextField.setText("");
+                mondayTextField.setText("");
+                tuesdayTextField.setText("");
+                wednesdayTextField.setText("");
+                thursdayTextField.setText("");
+                
+                display();
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ClassRoutineEditable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_insertButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,11 +429,14 @@ public class ClassRoutineEditable extends javax.swing.JFrame {
     PreparedStatement statement;
     ResultSet result;
     
+    private String oldTime;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton deletButton;
     private javax.swing.JLabel editTimeLabel;
     private javax.swing.JTextField editTimeTextField;
+    private javax.swing.JButton insertButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mondayLabel;
     private javax.swing.JTextField mondayTextField;
